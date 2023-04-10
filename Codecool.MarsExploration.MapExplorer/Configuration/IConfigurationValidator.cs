@@ -1,6 +1,6 @@
 ﻿namespace Codecool.MarsExploration.MapExplorer.Configuration;
 
-public class IConfigurationValidator
+public interface IConfigurationValidator
 {
-    
+    bool Validate(Configuration config);
 }

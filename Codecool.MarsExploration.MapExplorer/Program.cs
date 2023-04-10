@@ -1,4 +1,6 @@
-﻿using Codecool.MarsExploration.MapExplorer.MapLoader;
+﻿using Codecool.MarsExploration.MapExplorer.Configuration;
+using Codecool.MarsExploration.MapExplorer.MapLoader;
+using Codecool.MarsExploration.MapExplorer.MarsRover;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 using Codecool.MarsExploration.MapGenerator.MapElements.Model;
 
@@ -12,7 +14,6 @@ class Program
     {
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
         Coordinate landingSpot = new Coordinate(6, 6);
-        IMapLoader mapLoader = new Loader();
-        Map map=mapLoader.Load(mapFile);
+        
     }
 }

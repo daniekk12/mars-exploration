@@ -3,7 +3,9 @@ using Codecool.MarsExploration.MapGenerator.MapElements.Model;
 
 namespace Codecool.MarsExploration.MapGenerator.MapElements.Service.Builder;
 
-public class MapElementBuilder : IMapElementBuilder
+public class 
+    
+    MapElementBuilder : IMapElementBuilder
 {
     private readonly IDimensionCalculator _dimensionCalculator;
     private static readonly Random Random = new();

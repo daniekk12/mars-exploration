@@ -13,17 +13,6 @@ class Program
     public static void Main(string[] args)
     {
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
-        Coordinate landingSpot = new Coordinate(6, 6);
-        IEnumerable<string> resources = new List<string>() { "minerals","water" };
-        IMapLoader mapLoader = new Loader();
-        Map map=mapLoader.Load(mapFile);
-        IConfigurationValidator configurationValidator = new ConfigurationValidator();
-        
-        IDeployer deployer = new Deployer();
-        if (configurationValidator.Validate(new Configuration.Configuration(mapFile,landingSpot,resources,1000)))
-        {
-            deployer.Deploy(1, landingSpot, 5, new List<Coordinate>());
-        }
-        
+        Coordinate landingSpot = new Coordinate(6, 6);        
     }
 }

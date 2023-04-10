@@ -1,3 +1,5 @@
-﻿namespace Codecool.MarsExploration.MapExplorer.MarsRover;
+﻿using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 
-public record MarsRover();
+namespace Codecool.MarsExploration.MapExplorer.MarsRover;
+
+public record MarsRover(string id, Coordinate position, int sight, IEnumerable<Coordinate> succesfullLocations);

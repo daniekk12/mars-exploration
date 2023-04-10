@@ -10,6 +10,5 @@ class Program
     {
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
         Coordinate landingSpot = new Coordinate(6, 6);
-
     }
 }

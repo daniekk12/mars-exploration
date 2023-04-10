@@ -1,6 +1,8 @@
-﻿namespace Codecool.MarsExploration.MapExplorer.MarsRover;
+﻿using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 
-public class IDeployer
+namespace Codecool.MarsExploration.MapExplorer.MarsRover;
+
+public interface IDeployer
 {
-    
+    public MarsRover Deploy(int id, Coordinate position, int sight, IEnumerable<Coordinate> succesfullLocations);
 }

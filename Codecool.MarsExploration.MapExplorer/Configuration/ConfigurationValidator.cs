@@ -12,7 +12,7 @@ public class ConfigurationValidator : IConfigurationValidator
     public bool Validate(Configuration config)
     {
         Map map = _mapLoader.Load(config.File);
-        if (config.LandingSpot != null)
+        if (map.Representation[config.LandingSpot.X,config.LandingSpot.Y] != " ")
         {
             return false;
         }
@@ -21,7 +21,7 @@ public class ConfigurationValidator : IConfigurationValidator
         
         for (var i = 0; i < adCoordinates.Count; i++)
         {
-            if (adCoordinates[i] == null)
+            if (map.Representation[adCoordinates[i].X,adCoordinates[i].Y] == null)
             {
                 return true;
             }

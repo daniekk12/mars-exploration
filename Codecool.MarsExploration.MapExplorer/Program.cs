@@ -13,7 +13,6 @@ class Program
     public static void Main(string[] args)
     {
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
-        Coordinate landingSpot = new Coordinate(6, 6);
-        
+        Coordinate landingSpot = new Coordinate(6, 6);        
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace Codecool.MarsExploration.MapExplorer.Logger;
 
-public class Logger: ILogger
+public class FileLogger : ILogger
 {
     public void Log(string message)
     {
-        throw new NotImplementedException();
+        File.ReadAllText(message);
     }
 }

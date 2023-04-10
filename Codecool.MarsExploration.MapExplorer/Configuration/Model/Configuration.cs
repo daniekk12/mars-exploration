@@ -2,4 +2,4 @@
 
 namespace Codecool.MarsExploration.MapExplorer.Configuration;
 
-public record Configuration(string file,Coordinate landingSpot,IEnumerable<String> resources, int timeOut);
+public record Configuration(string File,Coordinate LandingSpot, IEnumerable<String> Resources, int TimeOut);

@@ -12,7 +12,7 @@ public class ConfigurationValidator : IConfigurationValidator
     public bool Validate(Configuration config)
     {
         Map map = _mapLoader.Load(config.File);
-        if (map.Representation[config.LandingSpot.X,config.LandingSpot.Y] != null)
+        if (map.Representation[config.LandingSpot.X,config.LandingSpot.Y] != " ")
         {
             return false;
         }

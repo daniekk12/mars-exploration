@@ -1,10 +1,12 @@
 ﻿using Codecool.MarsExploration.MapExplorer.MarsRover;
 using Codecool.MarsExploration.MapGenerator.Calculators.Model;
+using Codecool.MarsExploration.MapGenerator.MapElements.Model;
 
 namespace Codecool.MarsExploration.MapExplorer.Movement;
 
 public class Movement
 {
+    private Map map;
     public Rover Move(Rover rover, string direction)
     {
         Coordinate position = direction switch

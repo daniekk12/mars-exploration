@@ -7,15 +7,23 @@ namespace Codecool.MarsExploration.MapExplorer.Movement;
 public class Movement
 {
     private Map map;
-    public Rover Move(Rover rover, string direction)
+    public void Move(Rover rover,Coordinate target)
     {
-        Coordinate position = direction switch
+        if (target.X < rover.position.X)
         {
-            "down" => new Coordinate(rover.position.X, rover.position.Y - 1),
-            "up" => new Coordinate(rover.position.X, rover.position.Y + 1),
-            "left" => new Coordinate(rover.position.X - 1, rover.position.Y),
-            "right" => new Coordinate(rover.position.X + 1, rover.position.Y),
-        };
-        return new Rover(rover.id, position, rover.sight, rover.succesfullLocations);
+            rover.position = new Coordinate(rover.position.X + 1, rover.position.Y);
+        }
+        else
+        {
+            rover.position = new Coordinate(rover.position.X - 1, rover.position.Y);
+        }
+        if (target.Y < rover.position.Y)
+        {
+            rover.position = new Coordinate(rover.position.X, rover.position.Y+1);
+        }
+        else
+        {
+            rover.position = new Coordinate(rover.position.X, rover.position.Y-1);
+        }
     }
 }

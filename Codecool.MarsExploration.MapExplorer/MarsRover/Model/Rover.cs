@@ -2,4 +2,4 @@
 
 namespace Codecool.MarsExploration.MapExplorer.MarsRover;
 
-public record MarsRover(int id, Coordinate position, int sight, IEnumerable<Coordinate> succesfullLocations);
+public record Rover(int id, Coordinate position, int sight, IEnumerable<Coordinate> succesfullLocations);

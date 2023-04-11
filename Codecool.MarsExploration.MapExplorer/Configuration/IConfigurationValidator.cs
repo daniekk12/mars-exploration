@@ -2,5 +2,5 @@
 
 public interface IConfigurationValidator
 {
-    bool Validate(Configuration config);
+    bool Validate(Config config);
 }

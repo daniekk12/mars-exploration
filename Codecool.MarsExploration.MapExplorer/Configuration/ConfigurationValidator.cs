@@ -9,7 +9,7 @@ public class ConfigurationValidator : IConfigurationValidator
 {
     private ICoordinateCalculator _coordinateCalculator = new CoordinateCalculator();
     private IMapLoader _mapLoader = new Loader();
-    public bool Validate(Configuration config)
+    public bool Validate(Config config)
     {
         Map map = _mapLoader.Load(config.File);
         if (map.Representation[config.LandingSpot.X,config.LandingSpot.Y] != " ")

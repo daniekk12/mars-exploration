@@ -50,9 +50,10 @@ public class Simulation
                 break;
             }
         }
+        var move = new MovementClass(map);
         while (steps<= _config.TimeOut)
         {
-            var move = new MovementClass(map);
+            Console.WriteLine($"X={_rover.position.X} Y={_rover.position.Y}");
             var scanner = new Scanner.Scanner(map);
             Coordinate target = scanner.Scan(_rover,_config.Resources);
             if (target == null)

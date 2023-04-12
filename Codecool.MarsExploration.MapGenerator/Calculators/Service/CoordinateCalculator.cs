@@ -17,14 +17,15 @@ public class CoordinateCalculator : ICoordinateCalculator
 
     public IEnumerable<Coordinate> GetAdjacentCoordinates(Coordinate coordinate, int dimension, int reach = 1)
     {
-        var adjacent = new[]
+        List<Coordinate> adjacent = new List<Coordinate>();
+        for (int i = coordinate.X-reach; i <= coordinate.X+reach; i++)
         {
-            coordinate with { Y = coordinate.Y + reach },
-            coordinate with { Y = coordinate.Y - reach },
-            coordinate with { X = coordinate.X + reach },
-            coordinate with { X = coordinate.X - reach },
-        };
-        return adjacent.Where(c => c.X >= 0 && c.Y >= 0 && c.X < dimension && c.Y < dimension);
+            for (int j = coordinate.Y-reach; j <= coordinate.Y+reach; j++)
+            {
+                adjacent.Add(new Coordinate(i,j));
+            }
+        }
+        return adjacent.Where(c => c.X >= 0 && c.Y >= 0 && c.X < dimension && c.Y < dimension&& c!=coordinate);
     }
 
     public IEnumerable<Coordinate> GetAdjacentCoordinates(IEnumerable<Coordinate> coordinates, int dimension)

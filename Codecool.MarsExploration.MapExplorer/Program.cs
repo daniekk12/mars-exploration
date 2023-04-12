@@ -20,9 +20,9 @@ class Program
         const string waterSymbol = "*";
         
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
-        string[] resources = new[] { mineralSymbol,waterSymbol};
+        string[] resources = { mineralSymbol,waterSymbol};
         
-        Coordinate landingSpot = new Coordinate(6, 6);
+        Coordinate landingSpot = new Coordinate(0, 0);
         IMapLoader mapLoader = new Loader();
         IDeployer deployer = new Deployer();
         IConfigurationValidator configurationValidator = new ConfigurationValidator();

@@ -22,7 +22,7 @@ class Program
         string mapFile = $@"{WorkDir}\Resources\exploration-0.map";
         string[] resources = new[] { mineralSymbol,waterSymbol};
         
-        Coordinate landingSpot = new Coordinate(6, 6);
+        Coordinate landingSpot = new Coordinate(1, 1);
         IMapLoader mapLoader = new Loader();
         IDeployer deployer = new Deployer();
         IConfigurationValidator configurationValidator = new ConfigurationValidator();

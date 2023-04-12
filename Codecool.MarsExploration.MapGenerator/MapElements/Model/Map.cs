@@ -33,7 +33,7 @@ public record Map(string?[,] Representation, bool SuccessfullyGenerated = false)
     public bool IsEmpty(Coordinate coordinate)
     {
         return string.IsNullOrEmpty(Representation[coordinate.X, coordinate.Y])
-            || Representation[coordinate.X, coordinate.Y] == " ";
+               || Representation[coordinate.X, coordinate.Y] == " ";
     }
 
     public override string ToString()

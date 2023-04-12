@@ -45,18 +45,28 @@ public class Simulation
             if (map.Representation[adjacentCoordinate.X,adjacentCoordinate.Y] == " ")
             {
                 Coordinate position = new Coordinate(adjacentCoordinate.X, adjacentCoordinate.Y);
-                _rover =_deployer.Deploy(1,position,3,new List<Coordinate>());
+                _rover =_deployer.Deploy(1,position,10,new List<Coordinate>());
+                map.Representation[position.X, position.Y] = "$";
                 break;
             }
         }
-        
         while (steps<= _config.TimeOut)
         {
+            var move = new MovementClass(map);
             var scanner = new Scanner.Scanner(map);
             Coordinate target = scanner.Scan(_rover,_config.Resources);
-            Console.WriteLine($"X={_rover.position.X} Y={_rover.position.Y}");
-            var move = new MovementClass();
+            if (target == null)
+            {
+                var adjCoord = _coordinateCalculator
+                    .GetAdjacentCoordinates(_rover.position, map.Representation.GetLength(0))
+                    .Where(c=>map.Representation[c.X,c.Y] != "#"||map.Representation[c.X,c.Y] != "#")
+                    .ToList();
+                target=adjCoord[new Random().Next(0,adjCoord.Count)];
+            }
             move.Move(_rover,target);
+            Console.WriteLine(map);
+            Thread.Sleep(1000);
+            Console.Clear();
             steps++;
         }
 

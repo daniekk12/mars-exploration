@@ -23,7 +23,6 @@ public class Scanner
                     j >= 0 && j < _map.Representation.GetLength(1) &&
                     resources.Contains(_map.Representation[i, j]))
                 {
-                Console.WriteLine($"x={rover.position.X} y={rover.position.Y}");
                     return new Coordinate(i, j);
                 }
             }

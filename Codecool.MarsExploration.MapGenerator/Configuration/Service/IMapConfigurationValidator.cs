@@ -1,6 +1,6 @@
-﻿using Codecool.MarsExploration.MapGenerator.Configuration.Model;
+﻿using Codecool.MarsExploration.Configuration.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.Configuration.Service;
+namespace Codecool.MarsExploration.Configuration.Service;
 
 public interface IMapConfigurationValidator
 {

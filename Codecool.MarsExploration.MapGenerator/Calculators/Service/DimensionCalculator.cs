@@ -1,17 +1,12 @@
-﻿namespace Codecool.MarsExploration.MapGenerator.Calculators.Service;
+﻿namespace Codecool.MarsExploration.Calculators.Service;
 
 public class DimensionCalculator : IDimensionCalculator
 {
     public int CalculateDimension(int size, int dimensionGrowth)
     {
-        int dimension = 0;
-        int numberOfAvailableBoxes = 0;
-        while (numberOfAvailableBoxes < size)
-        {
-            dimension++;
-            numberOfAvailableBoxes = dimension * dimension;
-        }
-
+        int dimension = (int)Math.Ceiling(Math.Sqrt(size));
         return dimension + dimensionGrowth;
     }
 }
+
+// int[,] 2DArray = new int[numberOfRows, numberOfColumns]

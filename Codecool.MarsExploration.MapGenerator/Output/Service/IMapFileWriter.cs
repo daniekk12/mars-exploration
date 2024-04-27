@@ -1,6 +1,6 @@
-﻿using Codecool.MarsExploration.MapGenerator.MapElements.Model;
+﻿using Codecool.MarsExploration.MapElements.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.Output.Service;
+namespace Codecool.MarsExploration.Output.Service;
 
 public interface IMapFileWriter
 {

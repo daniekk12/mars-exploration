@@ -1,7 +1,7 @@
-﻿using Codecool.MarsExploration.MapGenerator.Calculators.Model;
-using Codecool.MarsExploration.MapGenerator.MapElements.Model;
+﻿using Codecool.MarsExploration.Calculators.Model;
+using Codecool.MarsExploration.MapElements.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.MapElements.Service.Placer;
+namespace Codecool.MarsExploration.MapElements.Service.Placer;
 
 public interface IMapElementPlacer
 {

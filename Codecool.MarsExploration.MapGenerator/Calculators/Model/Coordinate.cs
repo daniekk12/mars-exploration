@@ -1,3 +1,3 @@
-﻿namespace Codecool.MarsExploration.MapGenerator.Calculators.Model;
+﻿namespace Codecool.MarsExploration.Calculators.Model;
 
 public record Coordinate(int X, int Y);

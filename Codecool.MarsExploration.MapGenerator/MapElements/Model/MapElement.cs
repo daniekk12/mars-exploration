@@ -1,4 +1,4 @@
-﻿namespace Codecool.MarsExploration.MapGenerator.MapElements.Model;
+﻿namespace Codecool.MarsExploration.MapElements.Model;
 
 public record MapElement(string?[,] Representation, string Name, int Dimension, string? PreferredLocationSymbol = null) : Map(Representation)
 {

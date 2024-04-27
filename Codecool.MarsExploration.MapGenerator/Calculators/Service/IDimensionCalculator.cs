@@ -1,4 +1,4 @@
-﻿namespace Codecool.MarsExploration.MapGenerator.Calculators.Service;
+﻿namespace Codecool.MarsExploration.Calculators.Service;
 
 public interface IDimensionCalculator
 {

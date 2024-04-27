@@ -1,10 +1,10 @@
-﻿using Codecool.MarsExploration.MapGenerator.Calculators.Service;
-using Codecool.MarsExploration.MapGenerator.Configuration.Model;
-using Codecool.MarsExploration.MapGenerator.Configuration.Service;
-using Codecool.MarsExploration.MapGenerator.MapElements.Service.Builder;
-using Codecool.MarsExploration.MapGenerator.MapElements.Service.Generator;
-using Codecool.MarsExploration.MapGenerator.MapElements.Service.Placer;
-using Codecool.MarsExploration.MapGenerator.Output.Service;
+﻿﻿using Codecool.MarsExploration.Calculators.Service;
+using Codecool.MarsExploration.Configuration.Model;
+using Codecool.MarsExploration.Configuration.Service;
+using Codecool.MarsExploration.MapElements.Service.Builder;
+using Codecool.MarsExploration.MapElements.Service.Generator;
+using Codecool.MarsExploration.MapElements.Service.Placer;
+using Codecool.MarsExploration.Output.Service;
 
 internal class Program
 {
@@ -16,18 +16,16 @@ internal class Program
         Console.WriteLine("Mars Exploration Sprint 1");
         var mapConfig = GetConfiguration();
 
-        var dimensionCalculator = new DimensionCalculator();
-        var coordinateCalculator = new CoordinateCalculator();
+        IDimensionCalculator dimensionCalculator = new DimensionCalculator();
+        ICoordinateCalculator coordinateCalculator = new CoordinateCalculator();
 
-        var mapElementFactory = new MapElementBuilder(dimensionCalculator);
-        var mapElementsGenerator = new MapElementsGenerator(mapElementFactory);
+        IMapElementBuilder mapElementFactory = new MapElementBuilder();
+        IMapElementsGenerator mapElementsGenerator = new MapElementsGenerator(mapElementFactory);
 
-        var mapConfigValidator = new MapConfigurationValidator();
-        var mapElementPlacer = new MapElementPlacer();
+        IMapConfigurationValidator mapConfigValidator = new MapConfigurationValidator();
+        IMapElementPlacer mapElementPlacer = new MapElementPlace();
 
-        var mapGenerator =
-            new MapGenerator(mapConfigValidator, mapElementsGenerator, coordinateCalculator, dimensionCalculator,
-                mapElementPlacer);
+        IMapGenerator mapGenerator = new MapGenerator();
 
         CreateAndWriteMaps(3, mapGenerator, mapConfig);
 
@@ -37,17 +35,9 @@ internal class Program
 
     private static void CreateAndWriteMaps(int count, IMapGenerator mapGenerator, MapConfiguration mapConfig)
     {
-        var mapFileWriter = new MapFileWriter();
-
-        foreach (var cnt in Enumerable.Range(0, count))
+        for (int i = 0; i < count; i++)
         {
-            string outputFile = @$"{WorkDir}\exploration-{cnt}.map";
-            var map = mapGenerator.Generate(mapConfig);
-
-            if (map.SuccessfullyGenerated)
-            {
-                mapFileWriter.WriteMapFile(map, outputFile);
-            }
+            mapGenerator.Generate(mapConfig);
         }
     }
 
@@ -60,27 +50,29 @@ internal class Program
 
         var mountainsCfg = new MapElementConfiguration(mountainSymbol, "mountain", new[]
         {
-            new ElementToSize(2, 20),
-            new ElementToSize(1, 30),
+            new ElementToDimension(2, 20),
+            new ElementToDimension(1, 30),
         }, 3);
-
-        var pitsCfg = new MapElementConfiguration(pitSymbol, "pit", new[]
-        {
-            new ElementToSize(2, 10),
-            new ElementToSize(1, 20),
-        }, 10);
-
+        
         var mineralsCfg = new MapElementConfiguration(mineralSymbol, "mineral", new[]
         {
-            new ElementToSize(10, 1),
-        }, 0, mountainSymbol);
-
-        var waterCfg = new MapElementConfiguration(waterSymbol, "water", new[]
+            new ElementToDimension(2, 10),
+            new ElementToDimension(1, 15),
+        }, 0, "mountain");
+        
+        var pitsCfg = new MapElementConfiguration(pitSymbol, "pit", new[]
         {
-            new ElementToSize(10, 1),
-        }, 0, pitSymbol);
+            new ElementToDimension(5, 15),
+            new ElementToDimension(3, 25),
+        }, 10);
+        
+        var pocketsOfWaterCfg = new MapElementConfiguration(waterSymbol, "water", new[]
+        {
+            new ElementToDimension(3, 8),
+            new ElementToDimension(1, 12),
+        }, 0, "pit");
 
-        List<MapElementConfiguration> elementsCfg = new() { mountainsCfg, pitsCfg, mineralsCfg, waterCfg };
+        List<MapElementConfiguration> elementsCfg = new() { mountainsCfg, mineralsCfg, pitsCfg, pocketsOfWaterCfg };
         return new MapConfiguration(1000, 0.5, elementsCfg);
     }
 }

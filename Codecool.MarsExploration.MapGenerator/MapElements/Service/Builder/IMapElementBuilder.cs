@@ -1,6 +1,6 @@
-﻿using Codecool.MarsExploration.MapGenerator.MapElements.Model;
+﻿using Codecool.MarsExploration.MapElements.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.MapElements.Service.Builder;
+namespace Codecool.MarsExploration.MapElements.Service.Builder;
 
 public interface IMapElementBuilder
 {

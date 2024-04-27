@@ -1,37 +1,35 @@
-﻿using Codecool.MarsExploration.MapGenerator.Configuration.Model;
-using Codecool.MarsExploration.MapGenerator.MapElements.Model;
-using Codecool.MarsExploration.MapGenerator.MapElements.Service.Builder;
-
-namespace Codecool.MarsExploration.MapGenerator.MapElements.Service.Generator;
+﻿using Codecool.MarsExploration.Configuration.Model;
+using Codecool.MarsExploration.MapElements.Model;
+using System;
+using System.Collections.Generic;
+using Codecool.MarsExploration.MapElements.Service.Builder;
+using Codecool.MarsExploration.MapElements.Service.Generator;
 
 public class MapElementsGenerator : IMapElementsGenerator
 {
-    private readonly MapElementBuilder _mapElementBuilder;
+    private readonly IMapElementBuilder _builder;
 
-    public MapElementsGenerator(MapElementBuilder mapElementBuilder)
+    public MapElementsGenerator(IMapElementBuilder builder)
     {
-        _mapElementBuilder = mapElementBuilder;
+        _builder = builder;
     }
 
     public IEnumerable<MapElement> CreateAll(MapConfiguration mapConfig)
     {
-        return mapConfig.MapElementConfigurations
-            .SelectMany(CreateElements);
-    }
-
-    private IEnumerable<MapElement> CreateElements(MapElementConfiguration mapElementConfig)
-    {
-        foreach (var ets in mapElementConfig.ElementsToSizes)
+        List<MapElement> mapElements = new List<MapElement>();
+        foreach (var element in mapConfig.MapElementConfigurations)
         {
-            for (int i = 0; i < ets.ElementCount; i++)
+            foreach (var (elementCount, dimension) in element.ElementsToDimensions)
             {
-                yield return _mapElementBuilder.Build(
-                    ets.Size,
-                    mapElementConfig.Symbol,
-                    mapElementConfig.Name,
-                    mapElementConfig.DimensionGrowth,
-                    mapElementConfig.PreferredLocationSymbol);
+                int size = (dimension - element.DimensionGrowth) * (dimension - element.DimensionGrowth);
+                for (int i = 0; i <= elementCount; i++)
+                {
+                    mapElements.Add(_builder.Build(size, element.Symbol, element.Name, element.DimensionGrowth,
+                        element.PreferredLocationSymbol));
+                }
             }
         }
+
+        return mapElements;
     }
 }

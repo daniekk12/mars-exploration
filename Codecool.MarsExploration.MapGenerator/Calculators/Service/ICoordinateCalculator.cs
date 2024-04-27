@@ -1,11 +1,11 @@
-﻿using Codecool.MarsExploration.MapGenerator.MapElements.Model;
-using Codecool.MarsExploration.MapGenerator.Calculators.Model;
+﻿using Codecool.MarsExploration.Calculators.Model;
+using Codecool.MarsExploration.MapElements.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.Calculators.Service;
+namespace Codecool.MarsExploration.Calculators.Service;
 
 public interface ICoordinateCalculator
 {
     Coordinate GetRandomCoordinate(int dimension);
-    IEnumerable<Coordinate> GetAdjacentCoordinates(Coordinate coordinate, int dimension, int reach = 1);
+    IEnumerable<Coordinate> GetAdjacentCoordinates(Coordinate coordinate, int dimension);
     public IEnumerable<Coordinate> GetAdjacentCoordinates(IEnumerable<Coordinate> coordinates, int dimension);
 }

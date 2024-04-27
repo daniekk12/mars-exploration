@@ -1,4 +1,4 @@
-﻿namespace Codecool.MarsExploration.MapGenerator.Configuration.Model;
+﻿namespace Codecool.MarsExploration.Configuration.Model;
 
 public record MapConfiguration(
     int MapSize,

@@ -1,39 +1,12 @@
 ﻿using System.Text;
-using Codecool.MarsExploration.MapGenerator.Calculators.Model;
 
-namespace Codecool.MarsExploration.MapGenerator.MapElements.Model;
+namespace Codecool.MarsExploration.MapElements.Model;
 
 public record Map(string?[,] Representation, bool SuccessfullyGenerated = false)
 {
-    public int Dimension => Representation.GetLength(0);
-
-    private static string CreateStringRepresentation(string?[,] arr)
+    protected static string CreateStringRepresentation(string?[,] arr)
     {
-        var sb = new StringBuilder();
-
-        for (int i = 0; i < arr.GetLength(0); i++)
-        {
-            string s = "";
-            for (int j = 0; j < arr.GetLength(1); j++)
-            {
-                s += arr[i, j] == null ? " " : arr[i, j];
-            }
-
-            sb.AppendLine(s);
-        }
-
-        return sb.ToString();
-    }
-
-    public string? GetByCoordinate(Coordinate coordinate)
-    {
-        return Representation[coordinate.X, coordinate.Y];
-    }
-
-    public bool IsEmpty(Coordinate coordinate)
-    {
-        return string.IsNullOrEmpty(Representation[coordinate.X, coordinate.Y])
-               || Representation[coordinate.X, coordinate.Y] == " ";
+        return string.Join("",arr);
     }
 
     public override string ToString()
